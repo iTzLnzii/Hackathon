@@ -1,0 +1,5 @@
+{
+  "name": "Detector",
+  "description": "A modern platform for verifying content authenticity, contextual consistency, and source credibility to fight misinformation.",
+  "requestFramePermissions": []
+}

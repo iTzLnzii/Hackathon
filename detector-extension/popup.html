@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <span class="logo-icon">🛡️</span>
+        <span class="logo-text">Detector</span>
+      </div>
+      <button id="settingsBtn" class="icon-btn" title="Settings">⚙️</button>
+    </div>
+
+    <div id="initialView" class="view">
+      <p class="description">Analyze the current page for misinformation and digital manipulation.</p>
+      <button id="analyzeBtn" class="primary-btn">Capture & Analyze</button>
+    </div>
+
+    <div id="loadingView" class="view hidden">
+      <div class="loader"></div>
+      <p class="loading-text">Running forensic analysis...</p>
+      <p class="loading-subtext">Scanning for digital signatures and contextual anomalies.</p>
+    </div>
+
+    <div id="resultView" class="view hidden">
+      <div id="verdictBadge" class="badge">Verified</div>
+      
+      <div class="score-container">
+        <div class="score-item">
+          <span class="score-value" id="trustScore">0%</span>
+          <span class="score-label">Trust Score</span>
+        </div>
+        <div class="score-divider"></div>
+        <div class="score-item">
+          <span class="score-value" id="confidence">0%</span>
+          <span class="score-label">Confidence</span>
+        </div>
+      </div>
+
+      <div class="explanation-box">
+        <p id="explanationText"></p>
+      </div>
+
+      <div class="signals-section">
+        <p class="section-title">Detected Signals</p>
+        <ul id="signalsList" class="signals-list"></ul>
+      </div>
+
+      <button id="resetBtn" class="secondary-btn">New Analysis</button>
+    </div>
+
+    <div id="errorView" class="view hidden">
+      <div class="error-icon">⚠️</div>
+      <p id="errorText" class="error-message">Failed to connect to Detector API.</p>
+      <button id="retryBtn" class="secondary-btn">Try Again</button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

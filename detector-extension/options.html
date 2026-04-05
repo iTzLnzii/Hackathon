@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Detector Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <span class="logo-icon">🛡️</span>
+      <h1>Detector Settings</h1>
+    </div>
+
+    <div class="card">
+      <div class="form-group">
+        <label for="apiUrl">API Endpoint URL</label>
+        <input type="text" id="apiUrl" placeholder="http://localhost:3000">
+        <p class="help-text">The URL of your Detector backend server.</p>
+      </div>
+
+      <div class="form-group">
+        <label for="analysisMode">Analysis Mode</label>
+        <select id="analysisMode">
+          <option value="standard">Standard</option>
+          <option value="strict">Strict (Forensic)</option>
+          <option value="fast">Fast (Heuristic)</option>
+        </select>
+      </div>
+
+      <div class="form-group checkbox-group">
+        <input type="checkbox" id="includeReasoning">
+        <label for="includeReasoning">Include detailed forensic reasoning</label>
+      </div>
+
+      <div class="form-group checkbox-group">
+        <input type="checkbox" id="autoAnalyze">
+        <label for="autoAnalyze">Auto-analyze on popup open</label>
+      </div>
+
+      <div class="actions">
+        <button id="saveBtn" class="primary-btn">Save Settings</button>
+        <span id="status" class="status-msg"></span>
+      </div>
+    </div>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>

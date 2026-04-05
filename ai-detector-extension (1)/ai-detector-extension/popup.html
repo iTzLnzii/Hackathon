@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Content Detector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="bg-gradient"></div>
+    
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo-box">
+          <svg viewBox="0 0 24 24" fill="none" class="logo-svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>Detector<span class="hl">.ai</span></h1>
+          <p>Real-time content scanner</p>
+        </div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="enabledToggle" />
+        <span class="slider-switch"></span>
+      </label>
+    </header>
+
+    <!-- Detailed Status Card -->
+    <section class="status-panel">
+      <div class="status-glow"></div>
+      <div class="status-content">
+        <div class="status-info">
+          <span class="pulse-dot" id="statusDot"></span>
+          <span class="status-label" id="statusText">Checking Connection...</span>
+        </div>
+        <button id="pingBtn" class="ping-btn" title="Refresh Connection">
+           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Analytics Dashboard -->
+    <section class="dashboard">
+      <div class="dash-card">
+        <span class="dash-icon scanned">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></svg>
+        </span>
+        <div class="dash-data">
+          <!-- IDs kept strictly same as original for popup.js compatibility -->
+          <!-- We only ignore statQueued visually as it's not super important, but let's keep it accessible -->
+          <span class="dash-val" id="statScanned">0</span>
+          <span class="dash-title">Scanned</span>
+        </div>
+      </div>
+      <div class="dash-card error-card">
+        <span class="dash-icon blocked">
+           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </span>
+        <div class="dash-data">
+          <span class="dash-val red-text" id="statBlocked">0</span>
+          <span class="dash-title">Blocked</span>
+        </div>
+      </div>
+      <div class="dash-card">
+        <span class="dash-icon errors">
+           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+        </span>
+        <div class="dash-data">
+          <span class="dash-val amber-text" id="statErrors">0</span>
+          <span class="dash-title">Errors</span>
+          <!-- Hidden stats required by popup.js -->
+          <div style="display:none;" id="statDetected">0</div>
+          <div style="display:none;" id="statQueued">0</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Configure Block -->
+    <section class="config-block">
+      
+      <div class="input-group">
+        <label>Backend API URL</label>
+        <div class="input-wrapper">
+          <input type="url" id="backendUrl" placeholder="https://api.yourdomain.com" />
+          <button id="saveUrlBtn" class="action-btn">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-header">
+          <label>Strictness Level</label>
+          <div class="value-badge">
+             <span id="thresholdValue">60</span><span class="unit">%</span>
+          </div>
+        </div>
+        <input type="range" id="thresholdSlider" min="10" max="90" step="5" value="60" />
+        <div class="slider-ticks">
+           <span>Aggressive</span>
+           <span>Lenient</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <button class="reset-link" id="resetStatsBtn">Wipe Data</button>
+      <span>V1.0 • NeoCore</span>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Updates applied</div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
